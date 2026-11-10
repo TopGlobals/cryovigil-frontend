@@ -51,7 +51,7 @@ const useIamStore = defineStore('iam', () => {
           isSignedIn.value = true;
           console.log(`User signed in: ${currentUsername.value}`);
           errors.value = [];
-          router.push({ name: 'home' });
+          router.push({ name: 'analytics' });
         } else {
           isSignedIn.value = false;
           console.log('Sign-in failed');

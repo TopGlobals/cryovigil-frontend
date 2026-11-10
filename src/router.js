@@ -7,11 +7,7 @@ import laboratoriesRoutes from './laboratories/presentation/laboratories-routes.
 import profilesRoutes from './profiles/presentation/profiles-routes.js';
 import reportsRoutes from './reports/presentation/reports-routes.js';
 import settingsRoutes from './settings/presentation/settings-routes.js';
-
-/*
-import iamRoutes from "./iam/presentation/iam-routes.js";
-import {authenticationGuard} from "./iam/infrastructure/authentication.guard.js";
-*/
+import iamRoutes from './iam/presentation/iam-routes.js';
 const pageNotFound = () => import('./shared/presentation/views/page-not-found.vue');
 
 const routes = [
@@ -22,7 +18,7 @@ const routes = [
   { path: '/profiles', name: 'profiles', children: profilesRoutes },
   { path: '/reports', name: 'reports', children: reportsRoutes },
   { path: '/settings', name: 'settings', children: settingsRoutes },
-  /*{ path: '/iam',             name: 'iam',        children: iamRoutes },*/
+  ...iamRoutes,
   { path: '/', redirect: '/analytics' },
   {
     path: '/:pathMatch(.*)*',
