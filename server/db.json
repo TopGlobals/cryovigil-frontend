@@ -2159,7 +2159,20 @@
       "value": 17.8
     }
   ],
-  "history": [],
+  "history": [
+    {
+      "titleKey": "history.events.event1.title",
+      "type": "User Action",
+      "severity": "Info",
+      "location": "Lab A - Biochemistry Wing",
+      "sensor": "MANUAL-01",
+      "messageKey": "history.events.event1.message",
+      "isResolved": true,
+      "actionsTakenKeys": [],
+      "timestamp": "2026-10-22T00:07:47.071Z",
+      "id": 1
+    }
+  ],
   "laboratories": [],
   "profiles": [],
   "reports": [],

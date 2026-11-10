@@ -284,6 +284,21 @@
     "viewLaboratoryBtn": "View Laboratory",
     "peak": "Peak:",
     "threshold": "{temp} Threshold",
+    "add_event": "Add Event",
+    "create_dialog_title": "Add New Event",
+    "delete_event": "Delete from History",
+    "fields": {
+      "title_key": "Title / Key",
+      "type": "Event Type",
+      "severity": "Severity",
+      "location": "Location / Laboratory",
+      "sensor": "Sensor",
+      "message_key": "Detail / Message"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
     "types": {
       "resolved": "Resolved",
       "alert": "Alert",
@@ -299,7 +314,7 @@
     "events": {
       "event1": {
         "title": "Temperature returned to normal",
-        "message": "Sensor TH-04 reported stable temperature at 22.4°C after critical spike. Ventilation returned to standby.",
+        "message": "Sensor  TH-04 reported stable temperature at 22.4°C after critical spike. Ventilation returned to standby.",
         "action1": "Ventilation system activated at max speed",
         "action2": "Alert notification sent to 3 administrators",
         "action3": "Incident logged to safety registry",

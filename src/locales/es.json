@@ -256,12 +256,12 @@
   },
   "history": {
     "title": "Historial",
-    "subtitle": "Seguimiento de todos los eventos de laboratorio y actividad del sistema",
+    "subtitle": "Rastrea todos los eventos de laboratorio y actividad del sistema",
     "totalEvents": "TOTAL DE EVENTOS",
-    "allTime": "Registrados en total",
+    "allTime": "Registrados históricamente",
     "alertsResolved": "ALERTAS RESUELTAS",
     "thisWeek": "+12 esta semana",
-    "systemUptime": "TIEMPO DE ACTIVIDAD",
+    "systemUptime": "DISPONIBILIDAD DEL SISTEMA",
     "lastDays": "Últimos 30 días",
     "userActions": "ACCIONES DE USUARIO",
     "today": "Hoy",
@@ -275,55 +275,70 @@
     "description": "Descripción",
     "sensorData": "Datos del Sensor de Temperatura",
     "actionsTaken": "Acciones Tomadas",
-    "noActions": "No se han registrado acciones todavía.",
+    "noActions": "Aún no se han registrado acciones.",
     "loading": "Cargando eventos del historial...",
     "todayLabel": "HOY",
     "yesterdayLabel": "AYER",
-    "sensorDataTitle": "Datos del Sensor de Temperatura",
-    "viewLaboratoryBtn": "Ver Laboratorio",
+    "sensorDataTitle": "Datos  del Sensor de Temperatura",
     "generateReportBtn": "Generar Reporte",
+    "viewLaboratoryBtn": "Ver Laboratorio",
     "peak": "Pico:",
-    "threshold": "Umbral {temp}",
+    "threshold": "Límite {temp}",
+    "add_event": "Añadir Evento",
+    "create_dialog_title": "Añadir Nuevo Evento",
+    "delete_event": "Eliminar del Historial",
+    "fields": {
+      "title_key": "Título / Clave",
+      "type": "Tipo de Evento",
+      "severity": "Severidad",
+      "location": "Ubicación / Laboratorio",
+      "sensor": "Sensor",
+      "message_key": "Detalle / Mensaje"
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "save": "Guardar"
+    },
     "types": {
       "resolved": "Resuelto",
       "alert": "Alerta",
       "automation": "Automatización",
-      "userAction": "Acción de usuario"
+      "userAction": "Acción de Usuario"
     },
     "severities": {
       "critical": "Crítico",
       "warning": "Advertencia",
       "success": "Resuelto",
-      "info": "Informativo"
+      "info": "Información"
     },
     "events": {
       "event1": {
-        "title": "Temperatura normalizada",
-        "message": "El sensor TH-04 reportó temperatura estable a 22.4°C después del pico crítico. La ventilación regresó a modo de espera.",
-        "action1": "Sistema de ventilación activado a máxima velocidad",
+        "title": "Temperatura volvió a la normalidad",
+        "message": "El sensor TH-04 reportó temperatura estable a 22.4°C tras un pico crítico. La ventilación volvió a reposo.",
+        "action1": "Sistema de ventilación activado a velocidad máxima",
         "action2": "Notificación de alerta enviada a 3 administradores",
-        "action3": "Incidente registrado en el diario de seguridad",
-        "action4": "Temperatura normalizada en el sistema"
+        "action3": "Incidente registrado en el historial de seguridad",
+        "action4": "Temperatura normalizada"
       },
       "event2": {
         "title": "Alta temperatura detectada",
-        "message": "La temperatura excedió el límite seguro de 28°C. El sensor TH-04 registró 31.2°C en el gabinete C3.",
-        "action1": "Sistema de ventilación activado a máxima velocidad",
+        "message": "La temperatura superó el límite de 28°C. El sensor TH-04 registró 31.2°C en el gabinete C3.",
+        "action1": "Sistema de ventilación activado a velocidad máxima",
         "action2": "Notificación de alerta enviada a 3 administradores"
       },
       "event3": {
         "title": "Ventilación activada automáticamente",
-        "message": "La regla de automatización AUT-12 activó el sistema de extracción a máxima velocidad en respuesta a la alerta térmica.",
+        "message": "La regla de automatización AUT-12 activó el sistema de ventilación a máxima velocidad tras la alerta.",
         "action1": ""
       },
       "event4": {
-        "title": "Usuario actualizó ajustes de laboratorio",
-        "message": "La Dra. Sarah Lin modificó los umbrales de alerta para los sensores de CO2. Nuevo umbral: 800 ppm.",
+        "title": "Usuario actualizó la configuración del laboratorio",
+        "message": "La Dra. Sarah Lin modificó los umbrales de alerta para sensores de CO2. Nuevo umbral: 800 ppm.",
         "action1": ""
       },
       "event5": {
-        "title": "Purga rutinaria del filtro HVAC completada",
-        "message": "Ciclo programado de purga de filtración HEPA ejecutado por 45 minutos con cero residuos de partículas.",
+        "title": "Purga de filtro HVAC completada",
+        "message": "Ciclo programado de filtración HEPA ejecutado durante 45 minutos con cero residuos.",
         "action1": ""
       }
     }

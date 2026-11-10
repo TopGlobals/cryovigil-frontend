@@ -7,7 +7,7 @@
           v-for="event in group"
           :key="event.id"
           :event="event"
-          :is-active="selectedEventId === event.id"
+          :is-active="String(selectedEventId) === String(event.id)"
           @click="$emit('select-event', event)"
         />
       </div>
@@ -22,7 +22,7 @@ import HistoryItemCard from './history-item-card.vue';
 
 const props = defineProps({
   events: { type: Array, required: true },
-  selectedEventId: { type: Number, default: null },
+  selectedEventId: { type: [String, Number], default: null },
 });
 
 defineEmits(['select-event']);
@@ -33,7 +33,9 @@ const groupedEvents = computed(() => {
   return props.events.reduce((groups, event) => {
     const today = new Date().toDateString();
     const yesterday = new Date(Date.now() - 86400000).toDateString();
-    const eventDate = event.timestamp.toDateString();
+
+    const rawDate = event.timestamp instanceof Date ? event.timestamp : new Date(event.timestamp);
+    const eventDate = isNaN(rawDate.getTime()) ? new Date().toDateString() : rawDate.toDateString();
 
     let dayLabel = eventDate;
     if (eventDate === today) dayLabel = 'TODAY';
@@ -44,6 +46,7 @@ const groupedEvents = computed(() => {
     return groups;
   }, {});
 });
+
 const translateDateLabel = (label) => {
   if (label === 'TODAY') return t('history.todayLabel');
   if (label === 'YESTERDAY') return t('history.yesterdayLabel');
