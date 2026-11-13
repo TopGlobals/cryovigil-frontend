@@ -1,0 +1,12 @@
+services:
+  - type: site
+    name: cryovigil-web
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_CRYOVIGIL_PLATFORM_API_URL
+        value: https://cryovigil-backend.onrender.com/api/v1
