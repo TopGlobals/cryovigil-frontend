@@ -38,7 +38,7 @@ export const useHistoryStore = defineStore('history', () => {
     isLoading.value = true;
     try {
       const response = await historyApi.createData(eventData);
-      const newEntity = HistoryEntity.fromResource(response.data || payload);
+      const newEntity = HistoryEntity.fromResource(response.data || eventData);
       events.value.unshift(newEntity);
       selectedEvent.value = newEntity;
     } catch (err) {

@@ -8,6 +8,7 @@ import profilesRoutes from './profiles/presentation/profiles-routes.js';
 import reportsRoutes from './reports/presentation/reports-routes.js';
 import settingsRoutes from './settings/presentation/settings-routes.js';
 import iamRoutes from './iam/presentation/iam-routes.js';
+import { authenticationGuard } from './iam/infrastructure/authentication.guard.js';
 const pageNotFound = () => import('./shared/presentation/views/page-not-found.vue');
 
 const routes = [
@@ -32,6 +33,8 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes,
 });
+
+router.beforeEach(authenticationGuard);
 
 router.afterEach((to) => {
   const baseTitle = 'CryoVigil';

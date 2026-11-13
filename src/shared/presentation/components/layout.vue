@@ -3,13 +3,19 @@ import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import useSettingsStore from '../../../settings/application/settings.store.js';
+import useIamStore from '../../../iam/application/iam.store.js';
 import LanguageSwitcher from './language-switcher.vue';
 
 const { t, locale } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const settingsStore = useSettingsStore();
+const iamStore = useIamStore();
 const search = ref(typeof route.query.search === 'string' ? route.query.search : '');
+
+function handleSignOut() {
+  iamStore.signOut(router);
+}
 
 const mainMenuItems = [
   { label: 'layout.menu.items.analytics', to: '/analytics', icon: 'pi pi-th-large' },
@@ -148,13 +154,14 @@ watch(
         </section>
         <div class="user-profile">
           <span class="user-copy">
-            <strong>{{ settingsStore.profile.name }}</strong>
+            <strong>{{ iamStore.currentUsername || settingsStore.profile.name }}</strong>
             <small>{{ t('layout.profile.role') }}</small>
           </span>
           <button
             class="cryo-button cryo-button-link cryo-button-danger cryo-button-icon logout-button"
             type="button"
             :aria-label="t('layout.profile.logout')"
+            @click="handleSignOut"
           >
             <i
               class="pi pi-sign-out"

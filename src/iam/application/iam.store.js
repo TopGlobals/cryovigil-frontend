@@ -15,6 +15,10 @@ const iamApi = new IamApi();
  * @returns {Object} Store state and actions.
  */
 const useIamStore = defineStore('iam', () => {
+  const storedToken = localStorage.getItem('token');
+  const storedUsername = localStorage.getItem('username');
+  const storedUserId = Number(localStorage.getItem('userId')) || 0;
+
   /** @type {import('vue').Ref<Array<User>>} Array of user entities. */
   const users = ref([]);
   /** @type {import('vue').Ref<Array<Error>>} Array of error messages. */
@@ -22,11 +26,11 @@ const useIamStore = defineStore('iam', () => {
   /** @type {import('vue').Ref<boolean>} Flag indicating if users have been loaded. */
   const usersLoaded = ref(false);
   /** @type {import('vue').Ref<boolean>} Flag indicating if a user is signed in. */
-  const isSignedIn = ref(false);
+  const isSignedIn = ref(Boolean(storedToken));
   /** @type {import('vue').Ref<string|null>} The currently signed-in user entity. */
-  const currentUsername = ref(null);
+  const currentUsername = ref(storedUsername || null);
   /** @type {import('vue').Ref<number|null>} The currently signed-in user entity. */
-  const currentUserId = ref(0);
+  const currentUserId = ref(storedUserId);
   /** @type {import('vue').ComputedRef<string|null>} The current authentication token. */
   const currentToken = computed(() => (isSignedIn.value ? localStorage.getItem('token') : null));
 
@@ -48,6 +52,8 @@ const useIamStore = defineStore('iam', () => {
           currentUsername.value = currentUser.username;
           currentUserId.value = currentUser.id;
           localStorage.setItem('token', signInResource.token);
+          localStorage.setItem('username', currentUser.username);
+          localStorage.setItem('userId', String(currentUser.id));
           isSignedIn.value = true;
           console.log(`User signed in: ${currentUsername.value}`);
           errors.value = [];
@@ -97,14 +103,22 @@ const useIamStore = defineStore('iam', () => {
       });
   }
 
-  /** Clears the active IAM session and local auth artifacts. */
-  function signOut() {
+  /**
+   * Clears the active IAM session and local auth artifacts.
+   * @param {import('vue-router').Router} [router] - Optional router to redirect to sign-in.
+   */
+  function signOut(router = null) {
     currentUsername.value = null;
     currentUserId.value = 0;
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     isSignedIn.value = false;
     console.log('User signed out');
     errors.value = [];
+    if (router) {
+      router.push({ name: 'iam-sign-in' });
+    }
   }
 
   /**
